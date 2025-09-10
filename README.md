@@ -1,4 +1,4 @@
-# A tech shopping website with live translation and connection to ESP32. 
+# A tech shopping website with live translation w/ connection to ESP32. 
 
 This project was made to give an helping concept for a problem my parents have, which is to make a translating device for deaf people
 
