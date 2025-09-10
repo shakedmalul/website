@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/x-icon" href="images/white-star-icon-13.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<title>Something</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+  <link rel="manifest" href="manifest.json">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <!-- <video autoplay muted loop id="video-background">
+    <source src="images/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> -->
+  <script>
+    //if browser support service worker
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    };
+  </script>
+  <i class="bx bx-menu" id="btn" style="display: block;"></i>
+  <div class="sidebar">
+    <div class="logo-details">
+      <a href="index.html" class="logo_link">
+        <img id="myImg" src="images/untitled-3--unscreen.gif" class="bx bxl-c-plus-plus icon">
+        <div class="logo_name">‎ ‎ ‎ ‎ ‎ ‎ Something</div>
+      </a>
+
+    </div>
+      
+    <ul class="nav-list">
+      <li>
+        <i style="  background-color: transparent; color: var(--text);        " class="bx bx-search"></i>
+        <input  type="text" id="searchInput" placeholder="Search Something..." oninput="autofill()" />
+        <span  class="tooltip">Search</span>
+        <ul  id="autofillResults" class="autofill-results"></ul>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="Dashboard.html">
+          <i style="  background-color: transparent; color: var(--text);        " class='bx bx-transfer'></i>
+                    <span  class="links_name">LunaLingual</span>
+        </a>
+        <span class="tooltip">LunaLingual</span>
+      </li>
+
+      <li>
+        <a style="background: var(--sidebar);  "  href="Support.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-chat"></i>
+          <span class="links_name">Support</span>
+        </a>
+        <span class="tooltip">Support</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="shop.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-cart-alt"></i>
+          <span class="links_name">Market</span>
+        </a>
+        <span class="tooltip">Market</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="settings.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+        <span class="tooltip">Settings</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " id="darktoggle">
+          <i class="bx moon-icon bxs-moon"></i> <!-- Initially moon icon -->
+          <i class="bx sun-icon bxs-sun" style="display: none; color: var(--text);"></i> <!-- Hidden sun icon -->
+                    <span class="links_name">Dark mode</span>
+        </a>
+        <span class="tooltip">Dark mode</span>
+      </li>
+      <ul>
+        <li style="  background-color: transparent; color: var(--text);        " class="profile" id="profileDiv">
+            <a href="#" id="profileLink"> <!-- Add an anchor tag with an ID -->
+                <div class="profile-details">
+                    <img src="images/banner.jpg" alt="profileImg">
+                    <div class="name_job">
+                        <div style="color: var(--text);" class="name">Log in</div>
+                        <div class="job"></div>
+                    </div>
+                </div>
+            </a>
+            <i class='bx bx-log-out' id="log_out"></i>
+        </li>
+    </ul>
+    
+
+   </ul>
+ </div>
+ <div id="mydiv" style="display: none; z-index: 10;">
+  <div id="formContainer" class="formcontainer">
+    <div id="forms" class="forms">
+        <div id="loginForm" class="form login">
+            <span id="loginTitle" class="title">Login</span>
+            <form id="loginFormElement" action="#">
+                <div id="emailInput" class="input-field">
+                    <input type="text" id="email" placeholder="email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div id="passwordInput" class="input-field">
+                    <input type="password" id="password" class="password" placeholder="password" required>
+                    <i class="uil uil-lock icon"></i>
+                    <i id="showHidePw" class="uil uil-eye-slash showHidePw"></i>
+                </div>
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="logCheck">
+                        <label for="logCheck" id="RememberMe" class="text">Remember me</label>
+                    </div>
+                    <a href="#" id="forgotPassword" class="text">Forgot password?</a>
+                </div>
+                <div class="input-field button">
+                    <input type="button" id="loginButton" value="Login">
+                </div>
+            </form>
+            <div id="loginSignup" class="login-signup">
+                <span class="text">Not a member?
+                    <a href="#" id="SignUpBtn" class="text signup-link">Signup Now</a>
+                </span>
+            </div>
+        </div>
+
+        <div id="signupForm" class="form signup">
+            <span id="signupTitle" class="title">Sign Up</span>
+            <form id="signupFormElement" action="#">
+                <div id="usernameInput" class="input-field">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div id="signupEmailInput" class="input-field">
+                    <input type="text" id="signupEmail" placeholder="Email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div id="signupPasswordInput" class="input-field">
+                    <input type="password" id="signupPassword" class="password" placeholder="Password" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div id="confirmPasswordInput" class="input-field">
+                  <input type="password" id="confirmPassword" class="password" placeholder="Password" required>
+                  <i class="uil uil-lock icon"></i>
+              </div>
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="termCon">
+                        <label id="termscond" for="termCon" class="text">By clicking this you accept <a href="Terms.html" id="termsLink" class="text signup-link">the terms of condition.</a></label>
+                    </div>
+                </div>
+                <div class="input-field button">
+                    <input type="button" id="signupButton" value="Signup">
+                </div>
+            </form>
+            <div id="signupLogin" class="login-signup">
+                <span class="text">Already a member?
+                    <a href="#" id="loginLink" class="text login-link">Login Now</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div style="  background: var(--secondary);" class="langcontainer">
+
+    <div class="langwrapper">
+      <div class="text-input">
+        <textarea spellcheck="false" class="from-text" placeholder="Enter text"></textarea>
+        <textarea spellcheck="false" readonly disabled class="to-text upside-down" placeholder="Translation"></textarea>
+            </div>
+      <ul class="controls">
+        <li class="row from">
+          <div class="icons">
+            <i id="from" class="fas fa-volume-up"></i>
+            <i id="from" class="fas fa-copy"></i>
+          </div>
+          <select class="fromselect"></select>
+        </li>
+        <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
+        <li class="row to">
+          <select class="toselect"></select>
+          <div class="icons">
+            <i id="to" class="fas fa-volume-up"></i>
+            <i id="to" class="fas fa-copy"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <button>Translate Text</button>
+    <button type="button" id="startStopButton" onclick="togglePredictions()">Start</button>
+
+  </div>
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+
+  <!-- <script defer language="javascript" type="text/javascript" src="detection.js"></script> -->
+  <script defer language="javascript" type="text/javascript" src="sketch.js"></script>
+  <link rel="stylesheet" type="text/css" href="test.css">
+</head>
+
+<body>
+  <div class="webcontainer" style="z-index: 10;">
+    <div></div>
+    <div id="webcam-container" style="display: none;"></div>
+    <div id="label-container" style="display: none;"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+    // More API functions here:
+    // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+    // the link to your model provided by Teachable Machine export panel
+    const URL = "https://teachablemachine.withgoogle.com/models/iyro0dVzj/";
+
+    let model, webcam, labelContainer, maxPredictions;
+    let isPredicting = false;
+    let showPredictions = new Array();
+
+    async function togglePredictions() {
+        const webcamContainer = document.getElementById("webcam-container");
+        const labelContainer = document.getElementById("label-container");
+
+        if (!isPredicting) {
+            document.getElementById("startStopButton").textContent = "Stop";
+            isPredicting = true;
+            webcamContainer.style.display = "block";
+            labelContainer.style.display = "block";
+            await init();
+        } else {
+            document.getElementById("startStopButton").textContent = "Start";
+            isPredicting = false;
+            webcamContainer.style.display = "none";
+            labelContainer.style.display = "none";
+        }
+    }
+
+    async function init() {
+    if (webcam) return; // If webcam is already initialized, return without reinitializing
+
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    const flip = true;
+    webcam = new tmImage.Webcam(200, 200, flip);
+    await webcam.setup();
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    labelContainer = document.getElementById("label-container");
+    for (let i = 0; i < maxPredictions; i++) {
+        labelContainer.appendChild(document.createElement("div"));
+    }
+}
+
+
+    async function loop() {
+        webcam.update();
+        if (isPredicting) {
+            await predict();
+        }
+        window.requestAnimationFrame(loop);
+    }
+
+    let sendInterval;
+
+async function predict() {
+    const prediction = await model.predict(webcam.canvas);
+    for (let i = 0; i < maxPredictions; i++) {
+        if (prediction[i].probability > 0.70 && prediction[i].className !== "רקע") {
+            if (!showPredictions[i]) {
+                showPredictions[i] = Date.now();
+            } else {
+                const currentTime = Date.now();
+                const elapsedTime = (currentTime - showPredictions[i]) / 1000;
+                if (elapsedTime >= 2) {
+                    const className = prediction[i].className; // Get the class name
+                    const existingText = fromText.value.trim(); // Get the existing text
+                    // Append the class name to the existing text, without spaces
+                    const newText = existingText ? `${existingText}${className}` : className;
+                    setTimeout(function() {
+                      fromText.value = newText; // Update the input field with the new text
+}, 1000); // 5000 milliseconds = 5 seconds
+                    const classPrediction = `${className}: ${prediction[i].probability.toFixed(2)}`;
+                    labelContainer.childNodes[i].innerHTML = classPrediction;
+                    if (!sendInterval) {
+                        // Send the text every 5 seconds
+                        sendInterval = setInterval(sendText, 5000);
+                    }
+                }
+            }
+        } else {
+            labelContainer.childNodes[i].innerHTML = "";
+            showPredictions[i] = null;
+        }
+    }
+}
+
+function sendText() {
+    const textToSend = fromText.value.trim();
+    if (textToSend) {
+        // Code to send the text
+        console.log("Text to send:", textToSend);
+    }
+}
+
+
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database-compat.js"></script>
+<script src="countries.js"></script>
+<script src="java.js"></script>
+
+</body>
+</html>

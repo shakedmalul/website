@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/x-icon" href="images/white-star-icon-13.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<title>Something</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+  <link rel="manifest" href="manifest.json">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+</head>
+<body>
+  <script>
+    //if browser support service worker
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    };
+  </script>
+  <i class="bx bx-menu" id="btn" style="display: block;"></i>
+  <div class="sidebar">
+    <div class="logo-details">
+      <a href="index.html" class="logo_link">
+        <img id="myImg" src="images/untitled-3--unscreen.gif" class="bx bxl-c-plus-plus icon">
+        <div class="logo_name">‎ ‎ ‎ ‎ ‎ ‎ Something</div>
+      </a>
+
+    </div>
+      
+    <ul class="nav-list">
+      <li>
+        <i style="  background-color: transparent; color: var(--text);        " class="bx bx-search"></i>
+        <input  type="text" id="searchInput" placeholder="Search Something..." oninput="autofill()" />
+        <span  class="tooltip">Search</span>
+        <ul  id="autofillResults" class="autofill-results"></ul>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="Dashboard.html">
+          <i style="  background-color: transparent; color: var(--text);        " class='bx bx-transfer'></i>
+                    <span  class="links_name">LunaLingual</span>
+        </a>
+        <span class="tooltip">LunaLingual</span>
+      </li>
+
+      <li>
+        <a style="background: var(--sidebar);  "  href="Support.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-chat"></i>
+          <span class="links_name">Support</span>
+        </a>
+        <span class="tooltip">Support</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="shop.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-cart-alt"></i>
+          <span class="links_name">Market</span>
+        </a>
+        <span class="tooltip">Market</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " href="settings.html">
+          <i style="  background-color: transparent; color: var(--text);        " class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+        <span class="tooltip">Settings</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);  " id="darktoggle">
+          <i class="bx moon-icon bxs-moon"></i> <!-- Initially moon icon -->
+          <i class="bx sun-icon bxs-sun" style="display: none; color: var(--text);"></i> <!-- Hidden sun icon -->
+                    <span class="links_name">Dark mode</span>
+        </a>
+        <span class="tooltip">Dark mode</span>
+      </li>
+      <ul>
+        <li style="  background-color: transparent; color: var(--text);        " class="profile" id="profileDiv">
+            <a href="#" id="profileLink"> <!-- Add an anchor tag with an ID -->
+                <div class="profile-details">
+                    <img src="images/banner.jpg" alt="profileImg">
+                    <div class="name_job">
+                        <div style="color: var(--text);" class="name">Log in</div>
+                        <div class="job"></div>
+                    </div>
+                </div>
+            </a>
+            <i class='bx bx-log-out' id="log_out"></i>
+        </li>
+    </ul>
+    
+
+   </ul>
+ </div>
+ <div id="mydiv" style="display: none; z-index: 10;">
+  <div id="formContainer" class="formcontainer">
+    <div id="forms" class="forms">
+        <div id="loginForm" class="form login">
+            <span id="loginTitle" class="title">Login</span>
+            <form id="loginFormElement" action="#">
+                <div id="emailInput" class="input-field">
+                    <input type="text" id="email" placeholder="email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div id="passwordInput" class="input-field">
+                    <input type="password" id="password" class="password" placeholder="password" required>
+                    <i class="uil uil-lock icon"></i>
+                    <i id="showHidePw" class="uil uil-eye-slash showHidePw"></i>
+                </div>
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="logCheck">
+                        <label for="logCheck" id="RememberMe" class="text">Remember me</label>
+                    </div>
+                    <a href="#" id="forgotPassword" class="text">Forgot password?</a>
+                </div>
+                <div class="input-field button">
+                    <input type="button" id="loginButton" value="Login">
+                </div>
+            </form>
+            <div id="loginSignup" class="login-signup">
+                <span class="text">Not a member?
+                    <a href="#" id="SignUpBtn" class="text signup-link">Signup Now</a>
+                </span>
+            </div>
+        </div>
+
+        <div id="signupForm" class="form signup">
+            <span id="signupTitle" class="title">Sign Up</span>
+            <form id="signupFormElement" action="#">
+                <div id="usernameInput" class="input-field">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div id="signupEmailInput" class="input-field">
+                    <input type="text" id="signupEmail" placeholder="Email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div id="signupPasswordInput" class="input-field">
+                    <input type="password" id="signupPassword" class="password" placeholder="Password" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div id="confirmPasswordInput" class="input-field">
+                  <input type="password" id="confirmPassword" class="password" placeholder="Password" required>
+                  <i class="uil uil-lock icon"></i>
+              </div>
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="termCon">
+                        <label id="termscond" for="termCon" class="text">By clicking this you accept <a href="Terms.html" id="termsLink" class="text signup-link">the terms of condition.</a></label>
+                    </div>
+                </div>
+                <div class="input-field button">
+                    <input type="button" id="signupButton" value="Signup">
+                </div>
+            </form>
+            <div id="signupLogin" class="login-signup">
+                <span class="text">Already a member?
+                    <a href="#" id="loginLink" class="text login-link">Login Now</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="settingscontainer">
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="img-area" data-img="">
+        <i class='bx bxs-cloud-upload icon'></i>
+        <h3>Upload Image</h3>
+        <p>Image size must be less than <span>2MB</span></p>
+    </div>
+    <button class="select-image">Select Image</button>
+</div>
+
+    <script>
+const selectImage = document.querySelector('.select-image');
+const inputFile = document.querySelector('#file');
+const imgArea = document.querySelector('.img-area');
+
+// Initialize Firebase Storage and Database
+const storageRef = firebase.storage().ref();
+const databaseRef = firebase.database().ref();
+
+selectImage.addEventListener('click', function () {
+  inputFile.click();
+})
+
+inputFile.addEventListener('change', function () {
+  const image = this.files[0];
+  if (image.size < 2000000) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const allImg = imgArea.querySelectorAll('img');
+      allImg.forEach(item => item.remove());
+      const imgUrl = reader.result;
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      imgArea.appendChild(img);
+      imgArea.classList.add('active');
+      imgArea.dataset.img = image.name;
+
+      // Upload the image to Firebase Storage
+      const imageRef = storageRef.child(`images/${image.name}`);
+      imageRef.put(image).then((snapshot) => {
+        console.log('Image uploaded successfully!', snapshot);
+
+        // Get the download URL
+        snapshot.ref.getDownloadURL().then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          
+          // Save the download URL to Firebase Database
+          databaseRef.child('images').push({
+            name: image.name,
+            url: downloadURL
+          }).then(() => {
+            console.log('Download URL saved to database.');
+          }).catch((error) => {
+            console.error('Error saving download URL to database', error);
+          });
+        });
+      }).catch((error) => {
+        console.error('Error uploading image', error);
+      });
+    }
+    reader.readAsDataURL(image);
+  } else {
+    alert("Image size more than 2MB");
+  }
+})
+
+    </script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database-compat.js"></script>
+
+<script src="java.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/x-icon" href="/images/white-star-icon-13.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <title>Something</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+  <!-- <video autoplay muted loop id="video-background">
+    <source src="/images/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+
+  <i class="bx bx-menu" id="btn" style="display: block;"></i>
+  <div class="sidebar">
+    <div class="logo-details">
+      <a href="/index.html" class="logo_link">
+        <img id="myImg" src="/images/untitled-3--unscreen.gif" class="bx bxl-c-plus-plus icon">
+        <div class="logo_name">‎ ‎ ‎ ‎ ‎ ‎ Something</div>
+      </a>
+    </div>
+
+    <ul class="nav-list">
+      <li>
+        <i style="background-color: transparent; color: var(--text);" class="bx bx-search"></i>
+        <input type="text" id="searchInput" placeholder="Search Something..." oninput="autofill()" />
+        <span class="tooltip">Search</span>
+        <ul id="autofillResults" class="autofill-results"></ul>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);" href="Dashboard.html">
+          <i style="background-color: transparent; color: var(--text);" class='bx bx-transfer'></i>
+          <span class="links_name">LunaLingual</span>
+        </a>
+        <span class="tooltip">LunaLingual</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);" href="Support.html">
+          <i style="background-color: transparent; color: var(--text);" class="bx bx-chat"></i>
+          <span class="links_name">Support</span>
+        </a>
+        <span class="tooltip">Support</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);" href="shop.html">
+          <i style="background-color: transparent; color: var(--text);" class="bx bx-cart-alt"></i>
+          <span class="links_name">Market</span>
+        </a>
+        <span class="tooltip">Market</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);" href="settings.html">
+          <i style="background-color: transparent; color: var(--text);" class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+        <span class="tooltip">Settings</span>
+      </li>
+      <li>
+        <a style="background: var(--sidebar);" id="darktoggle">
+          <i class="bx moon-icon bxs-moon"></i>
+          <i class="bx sun-icon bxs-sun" style="display: none; color: var(--text);"></i>
+          <span class="links_name">Dark mode</span>
+        </a>
+        <span class="tooltip">Dark mode</span>
+      </li>
+      <ul>
+        <li style="background-color: transparent; color: var(--text);" class="profile" id="profileDiv">
+          <a href="#" id="profileLink">
+            <div class="profile-details">
+              <img src="/images/banner.jpg" alt="profileImg">
+              <div class="name_job">
+                <div style="color: var(--text);" class="name">Log in</div>
+                <div class="job"></div>
+              </div>
+            </div>
+          </a>
+          <i class='bx bx-log-out' id="log_out"></i>
+        </li>
+      </ul>
+    </ul>
+  </div>
+
+  <div id="mydiv" style="display: none; z-index: 10;">
+    <div id="formContainer" class="formcontainer">
+      <div id="forms" class="forms">
+        <div id="loginForm" class="form login">
+          <span id="loginTitle" class="title">Login</span>
+          <form id="loginFormElement" action="#">
+            <div id="emailInput" class="input-field">
+              <input type="text" id="email" placeholder="email" required>
+              <i class="uil uil-envelope icon"></i>
+            </div>
+            <div id="passwordInput" class="input-field">
+              <input type="password" id="password" class="password" placeholder="password" required>
+              <i class="uil uil-lock icon"></i>
+              <i id="showHidePw" class="uil uil-eye-slash showHidePw"></i>
+            </div>
+            <div class="checkbox-text">
+              <div class="checkbox-content">
+                <input type="checkbox" id="logCheck">
+                <label for="logCheck" id="RememberMe" class="text">Remember me</label>
+              </div>
+              <a href="#" id="forgotPassword" class="text">Forgot password?</a>
+            </div>
+            <div class="input-field button">
+              <input type="button" id="loginButton" value="Login">
+            </div>
+          </form>
+          <div id="loginSignup" class="login-signup">
+            <span class="text">Not a member?
+              <a href="#" id="SignUpBtn" class="text signup-link">Signup Now</a>
+            </span>
+          </div>
+        </div>
+
+        <div id="signupForm" class="form signup">
+          <span id="signupTitle" class="title">Sign Up</span>
+          <form id="signupFormElement" action="#">
+            <div id="usernameInput" class="input-field">
+              <input type="text" id="username" placeholder="Username" required>
+              <i class="uil uil-user"></i>
+            </div>
+            <div id="signupEmailInput" class="input-field">
+              <input type="text" id="signupEmail" placeholder="Email" required>
+              <i class="uil uil-envelope icon"></i>
+            </div>
+            <div id="signupPasswordInput" class="input-field">
+              <input type="password" id="signupPassword" class="password" placeholder="Password" required>
+              <i class="uil uil-lock icon"></i>
+            </div>
+            <div id="confirmPasswordInput" class="input-field">
+              <input type="password" id="confirmPassword" class="password" placeholder="Password" required>
+              <i class="uil uil-lock icon"></i>
+            </div>
+            <div class="checkbox-text">
+              <div class="checkbox-content">
+                <input type="checkbox" id="termCon">
+                <label id="termscond" for="termCon" class="text">By clicking this you accept <a href="/Terms.html" id="termsLink" class="text signup-link">the terms of condition.</a></label>
+              </div>
+            </div>
+            <div class="input-field button">
+              <input type="button" id="signupButton" value="Signup">
+            </div>
+          </form>
+          <div id="signupLogin" class="login-signup">
+            <span class="text">Already a member?
+              <a href="#" id="loginLink" class="text login-link">Login Now</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-in">
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3354.3719357034042!2d35.515525000000004!3d32.782396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151c3f043c075941%3A0x75eaf44a5a5b039c!2sDavid%20Elazar%20St%2018%2C%20Tverya!5e0!3m2!1sen!2sil!4v1706615120392!5m2!1sen!2sil" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="contact-form">
+      <h1>Contact us</h1>
+      <form action="https://formspree.io/f/mvoezjpo" method="POST">
+        <input type="name" name="name" placeholder="name" class="contact-form-txt" required/>
+        <input type="email" name="email" placeholder="email" class="contact-form-txt" required/>
+        <textarea name="message" placeholder="Whats the problem?" class="contact-form-txtarea"></textarea>
+        <button type="submit" name="submit" class="contact-form-btn" onclick="submitForm()">Submit</button>
+      </form> 
+    </div>
+  </div>
+
+  <button class="chatbot-toggler">
+    <span class="material-symbols-rounded">mode_comment</span>
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  <div class="chatbot">
+    <header>
+      <h2>Spectra</h2>
+      <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+    <ul class="chatbox">
+      <li class="chat incoming">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <p>Hello!<br>How can I help you today?</p>
+      </li>
+    </ul>
+    <div class="chat-input">
+      <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+      <span id="send-btn" class="material-symbols-rounded">send</span>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  <script src="/java.js"></script>
+  <script src="/chatgpt.js"></script>
+
+  <script>
+    // Your additional script code goes here
+  </script>
+
+</body>
+</html>

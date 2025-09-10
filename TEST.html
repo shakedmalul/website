@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css" />
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="mydiv">
+        <div id="formContainer" class="formcontainer">
+          <div id="forms" class="forms">
+              <div id="loginForm" class="form login">
+                  <span id="loginTitle" class="title">Login</span>
+                  <form id="loginFormElement" action="#">
+                      <div id="emailInput" class="input-field">
+                          <input type="text" id="email" placeholder="email" required>
+                          <i class="uil uil-envelope icon"></i>
+                      </div>
+                      <div id="passwordInput" class="input-field">
+                          <input type="password" id="password" class="password" placeholder="password" required>
+                          <i class="uil uil-lock icon"></i>
+                          <i id="showHidePw" class="uil uil-eye-slash showHidePw"></i>
+                      </div>
+                      <div class="checkbox-text">
+                          <div class="checkbox-content">
+                              <input type="checkbox" id="logCheck">
+                              <label for="logCheck" id="RememberMe" class="text">Remember me</label>
+                          </div>
+                          <a href="#" id="forgotPassword" class="text">Forgot password?</a>
+                      </div>
+                      <div class="input-field button">
+                          <input type="button" id="loginButton" value="Login">
+                      </div>
+                  </form>
+                  <div id="loginSignup" class="login-signup">
+                      <span class="text">Not a member?
+                          <a href="#" id="SignUpBtn" class="text signup-link">Signup Now</a>
+                      </span>
+                  </div>
+              </div>
+      
+              <div id="signupForm" class="form signup">
+                  <span id="signupTitle" class="title">Sign Up</span>
+                  <form id="signupFormElement" action="#">
+                      <div id="usernameInput" class="input-field">
+                          <input type="text" id="username" placeholder="Username" required>
+                          <i class="uil uil-user"></i>  
+                      </div>
+                      <div id="signupEmailInput" class="input-field">
+                          <input type="text" id="signupEmail" placeholder="Email" required>
+                          <i class="uil uil-envelope icon"></i>
+                      </div>
+                      <div id="signupPasswordInput" class="input-field">
+                          <input type="password" id="signupPassword" class="password" placeholder="Password" required>
+                          <i class="uil uil-lock icon"></i>
+                      </div>
+                      <div id="confirmPasswordInput" class="input-field">
+                        <input type="password" id="confirmPassword" class="password" placeholder="Password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                      <div class="checkbox-text">
+                          <div class="checkbox-content">
+                              <input type="checkbox" id="termCon">
+                              <label id="termscond" for="termCon" class="text">By clicking this you accept <a href="/Terms.html" id="termsLink" class="text signup-link">the terms of condition.</a></label>
+                          </div>
+                      </div>
+                      <div class="input-field button">
+                          <input type="button" id="signupButton" value="Signup">
+                      </div>
+                  </form>
+                  <div id="signupLogin" class="login-signup">
+                      <span class="text">Already a member?
+                          <a href="#" id="loginLink" class="text login-link">Login Now</a>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+
+    <script src="/test.js"></script>
+</body>
+</html>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database-compat.js"></script>
+
+<script src="/test.js"></script>
+
+</body>
+</html>
+
+
