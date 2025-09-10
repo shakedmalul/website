@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
       moonIcon.style.display = "none";
       sunIcon.style.display = "inline-block";
       linksName.textContent = "Light mode"; // Change text to "Light mode"
-      logoImage.src = "/untitled(6).gif"; // Change the image source for dark mode
+      logoImage.src = "untitled(6).gif"; // Change the image source for dark mode
   } else {
       linksName.textContent = "Dark mode"; // Default text
   }
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
       linksName.style.color = isDarkMode ? "#ffffff" : "#1d1d1f";
 
       // Change the image source based on dark mode
-      logoImage.src = isDarkMode ? "/untitled(6).gif" : "/images/untitled-3--unscreen.gif";
+      logoImage.src = isDarkMode ? "untitled(6).gif" : "images/untitled-3--unscreen.gif";
   };
 });
 // Initialize Firebase with your configuration
@@ -182,7 +182,7 @@ function updateUI(user) {
         // User is signed in
         profileDiv.innerHTML = `
             <div class="profile-details">
-                <img src="/images/banner.jpg" alt="profileImg">
+                <img src="images/banner.jpg" alt="profileImg">
                 <div class="name_job">
                     <div class="name">Welcome back,</div>
                     <div style="color: var(--text); class="job">${user.displayName}</div>
@@ -212,7 +212,7 @@ function updateUI(user) {
         // User is signed out
         profileDiv.innerHTML = `
             <div class="profile-details">
-                <img src="/images/banner.jpg" alt="profileImg">
+                <img src="images/banner.jpg" alt="profileImg">
                 <div class="name_job">
                 <div style="color: var(--text);" class="name">Log in</div>
                 <div class="job"></div>
